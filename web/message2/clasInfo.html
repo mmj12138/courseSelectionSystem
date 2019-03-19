@@ -1,0 +1,148 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>IN ADMIN PANEL | Powered by INDEZINER</title>
+    <link rel="stylesheet" type="text/css" href="{{ static_url('in-admin-panel/style.css') }}" />
+    <script type="text/javascript" src="{{ static_url('in-admin-panel/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ static_url('in-admin-panel/ddaccordion.js') }}"></script>
+    <script type="text/javascript">
+        ddaccordion.init({
+            headerclass: "submenuheader", //Shared CSS class name of headers group
+            contentclass: "submenu", //Shared CSS class name of contents group
+            revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+            mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+            collapseprev: true, //Collapse previous content (so only one open at any time)? true/false
+            defaultexpanded: [], //index of content(s) open by default [index1, index2, etc] [] denotes no content
+            onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+            animatedefault: false, //Should contents open by default be animated into view?
+            persiststate: true, //persist state of opened contents within browser session?
+            toggleclass: ["", ""], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+            togglehtml: ["suffix", "&lt;img src='{{ static_url('in-admin-panel/images/plus.gif') }}' class='statusicon' />", "&lt;img src='{{ static_url('in-admin-panel/images/minus.gif') }}' class='statusicon' />"], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+            animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+            oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
+                //do nothing
+            },
+            onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
+                //do nothing
+            }
+        })
+    </script>
+    <script src="{{ static_url('in-admin-panel/jquery.jclock-1.2.0.js.txt') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ static_url('in-admin-panel/jconfirmaction.jquery.js') }}"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('.ask').jConfirmAction();
+        });
+
+    </script>
+    <script type="text/javascript">
+        $(function($) {
+            $('.jclock').jclock();
+        });
+    </script>
+
+    <script language="javascript" type="text/javascript" src="{{ static_url('in-admin-panel/niceforms.js') }}"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="{{ static_url('in-admin-panel/niceforms-default.css') }}" />
+
+</head>
+<body>
+<div id="main_container">
+
+    <div class="header">
+        <div class="logo"><h1>学生课程管理系统</h1></div>
+
+        <div class="jclock"></div>
+    </div>
+
+    <div class="main_content">
+
+        <div class="menu">
+            <ul>
+                <li>
+                    <a class="current" href="/wel" >Admin Home</a><br/>
+                </li>
+            </ul>
+        </div>
+
+
+
+
+        <div class="center_content">
+
+
+
+            <div class="left_content">
+
+                <div class="sidebarmenu">
+                    <a class="menuitem" href="/adinfo1">查看个人信息</a><br>
+                    <a class="menuitem" href="/adinfo2">修改个人信息</a><br>
+                    <a class="menuitem" href="/stu">查看学生信息</a><br>
+                    <a class="menuitem" href="/cla">查看课程信息</a><br>
+                    <a class="menuitem" href="/upstu">新增学生信息</a><br>
+                    <a class="menuitem" href="/upcla">新增课程信息</a><br>
+
+                    <!--<%&#45;&#45;<a class="menuitem_green" href="">Green button</a>&#45;&#45;%>-->
+
+                    <!--<%&#45;&#45;<a class="menuitem_red" href="">Red button</a>&#45;&#45;%>-->
+
+                </div>
+
+            </div>
+
+            <div class="right_content">
+
+                <h2>欢迎登陆。</h2>
+
+<table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+<tr>
+        <th>课程号</th>
+        <th>课程名</th>
+        <th>所在系别</th>
+        <th>开始学期</th>
+        <th>学时</th>
+        <th>学分</th>
+        <th>操作</th>
+    </tr>
+    {% for item in c_list %}
+    <tr>
+        <form  action="" method="post">
+            <td>{{  item['cid']  }}</td>
+            <td>{{  item['cname']  }}</td>
+            <td>{{  item['cdept']  }}</td>
+            <td>{{  item['cstart']  }}</td>
+            <td>{{  item['ctaime']  }}</td>
+            <td>{{  item['ccode']  }}</td>
+            <input  type="hidden" name="cid" value="{{  item['cid']  }}">
+            <td> <input type="submit" value="删除"></td>
+        </form>
+    </tr>
+    {% end %}
+</table>
+
+
+
+
+
+
+            </div><!-- end of right content-->
+
+
+        </div>   <!--end of center content -->
+
+
+
+
+        <div class="clear"></div>
+    </div> <!--end of main content-->
+
+
+    <div class="footer">
+
+        <div class="left_footer">重新登录请点击 <a href="/">重新登录</a></div>
+    </div>
+
+</div>
+</body>
+</html>
+
